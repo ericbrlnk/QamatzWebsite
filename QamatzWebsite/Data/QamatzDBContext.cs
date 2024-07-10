@@ -13,13 +13,13 @@ namespace QamatzWebsite.Data
 
         // Database results
         // Post
-        public DbSet<Post> Post { get; set; }
+        public DbSet<Post>? Post { get; set; }
         
         // Tag
-        public DbSet<Tag> Tag { get; set; }
+        public DbSet<Tag>? Tag { get; set; }
         
         // PostTag
-        public DbSet<PostTag> PostTag { get; set; }
+        public DbSet<PostTag>? PostTag { get; set; }
 
     }
 }
