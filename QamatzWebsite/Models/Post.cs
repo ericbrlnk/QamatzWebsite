@@ -18,11 +18,11 @@ namespace QamatzWebsite.Models
         public string? Description { get; set; }
 
         [Column(TypeName = "datetime")]
-        public DateTime CreationDate { get; set; }
+        public DateTime? CreationDate { get; set; }
 
         [Column(TypeName = "varchar(50)")]
-        public string Author { get; set; }
+        public string? Author { get; set; }
 
-        public Tag Tag { get; set; }
+        public Tag? Tag { get; set; }
     }
 }

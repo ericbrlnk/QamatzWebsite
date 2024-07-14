@@ -20,6 +20,12 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// allow communication from port 3000
+app.UseCors(options => options.WithOrigins("http://localhost:3000")
+.AllowAnyMethod()
+.AllowAnyHeader()
+);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

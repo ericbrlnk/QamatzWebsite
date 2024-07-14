@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QamatzWebsite.Data;
 
@@ -11,9 +12,10 @@ using QamatzWebsite.Data;
 namespace QamatzWebsite.Migrations
 {
     [DbContext(typeof(QamatzDBContext))]
-    partial class QamatzDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240714015642_migration")]
+    partial class migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
