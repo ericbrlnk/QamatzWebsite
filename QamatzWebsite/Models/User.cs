@@ -21,6 +21,6 @@ namespace QamatzWebsite.Models
         public string Password { get; set; }
 
         [Column(TypeName = "varchar(300)")]
-        public string? avatarURL { get; set; }
+        public string? AvatarURL { get; set; }
     }
 }
