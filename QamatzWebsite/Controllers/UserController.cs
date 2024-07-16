@@ -12,55 +12,55 @@ namespace QamatzWebsite.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PostController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly QamatzDBContext _context;
 
-        public PostController(QamatzDBContext context)
+        public UserController(QamatzDBContext context)
         {
             _context = context;
         }
 
-        // GET: api/Post
+        // GET: api/User
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Post>>> GetPost()
+        public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
-            if (_context.Post == null)
-            {
-                return NotFound();
-            }
-            return await _context.Post.ToListAsync();
+          if (_context.User == null)
+          {
+              return NotFound();
+          }
+            return await _context.User.ToListAsync();
         }
 
-        // GET: api/Post/5
+        // GET: api/User/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Post>> GetPost(int id)
+        public async Task<ActionResult<User>> GetUser(int id)
         {
-            if (_context.Post == null)
+          if (_context.User == null)
+          {
+              return NotFound();
+          }
+            var user = await _context.User.FindAsync(id);
+
+            if (user == null)
             {
                 return NotFound();
             }
-            var post = await _context.Post.FindAsync(id);
 
-            if (post == null)
-            {
-                return NotFound();
-            }
-
-            return post;
+            return user;
         }
 
-        // PUT: api/Post/5
+        // PUT: api/User/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPost(int id, Post post)
+        public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != post.Id)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(post).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace QamatzWebsite.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PostExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -81,44 +81,44 @@ namespace QamatzWebsite.Controllers
             return NoContent();
         }
 
-        // POST: api/Post
+        // POST: api/User
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Post>> PostPost(Post post)
+        public async Task<ActionResult<User>> PostUser(User user)
         {
-            if (_context.Post == null)
-            {
-                return Problem("Entity set 'QamatzDBContext.Post'  is null.");
-            }
-            _context.Post.Add(post);
+          if (_context.User == null)
+          {
+              return Problem("Entity set 'QamatzDBContext.User'  is null.");
+          }
+            _context.User.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPost", new { id = post.Id }, post);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-        // DELETE: api/Post/5
+        // DELETE: api/User/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePost(int id)
+        public async Task<IActionResult> DeleteUser(int id)
         {
-            if (_context.Post == null)
+            if (_context.User == null)
             {
                 return NotFound();
             }
-            var post = await _context.Post.FindAsync(id);
-            if (post == null)
+            var user = await _context.User.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Post.Remove(post);
+            _context.User.Remove(user);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool PostExists(int id)
+        private bool UserExists(int id)
         {
-            return (_context.Post?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.User?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

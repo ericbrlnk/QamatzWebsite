@@ -21,5 +21,7 @@ namespace QamatzWebsite.Data
         // PostTag
         public DbSet<PostTag>? PostTag { get; set; }
 
+        // User results
+        public DbSet<User>? User { get; set; }
     }
 }
