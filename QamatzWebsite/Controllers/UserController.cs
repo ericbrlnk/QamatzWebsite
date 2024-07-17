@@ -86,14 +86,24 @@ namespace QamatzWebsite.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-          if (_context.User == null)
-          {
-              return Problem("Entity set 'QamatzDBContext.User'  is null.");
-          }
-            _context.User.Add(user);
-            await _context.SaveChangesAsync();
+            if (_context.User == null)
+            {
+                return Problem("Entity set 'QamatzDBContext.User'  is null.");
+            }
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            bool userExists = _context.User.Any(User => User.Login == user.Login);
+
+            if (!userExists)
+            {
+                _context.User.Add(user);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            }
+            else
+            {
+                return NoContent();
+            }
         }
 
         // DELETE: api/User/5
