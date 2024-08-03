@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace QamatzWebsite.Migrations
+namespace QamatzWebsite.Migrations.PostDB
 {
-    public partial class migration : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,23 +33,6 @@ namespace QamatzWebsite.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tag", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "User",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Login = table.Column<string>(type: "varchar(50)", nullable: false),
-                    Email = table.Column<string>(type: "varchar(50)", nullable: false),
-                    Birthday = table.Column<DateTime>(type: "datetime", nullable: false),
-                    Password = table.Column<string>(type: "varchar(50)", nullable: false),
-                    AvatarURL = table.Column<string>(type: "varchar(300)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_User", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,9 +71,6 @@ namespace QamatzWebsite.Migrations
 
             migrationBuilder.DropTable(
                 name: "PostTag");
-
-            migrationBuilder.DropTable(
-                name: "User");
 
             migrationBuilder.DropTable(
                 name: "Tag");

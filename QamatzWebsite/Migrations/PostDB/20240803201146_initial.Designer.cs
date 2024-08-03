@@ -3,17 +3,19 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QamatzWebsite.Data;
 
 #nullable disable
 
-namespace QamatzWebsite.Migrations
+namespace QamatzWebsite.Migrations.PostDB
 {
-    [DbContext(typeof(QamatzDBContext))]
-    partial class QamatzDBContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PostDBContext))]
+    [Migration("20240803201146_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,37 +90,6 @@ namespace QamatzWebsite.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tag");
-                });
-
-            modelBuilder.Entity("QamatzWebsite.Models.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("AvatarURL")
-                        .HasColumnType("varchar(300)");
-
-                    b.Property<DateTime>("Birthday")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("QamatzWebsite.Models.Post", b =>

@@ -14,9 +14,9 @@ namespace QamatzWebsite.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly QamatzDBContext _context;
+        private readonly UserDBContext _context;
 
-        public UserController(QamatzDBContext context)
+        public UserController(UserDBContext context)
         {
             _context = context;
         }
@@ -88,7 +88,7 @@ namespace QamatzWebsite.Controllers
         {
             if (_context.User == null)
             {
-                return Problem("Entity set 'QamatzDBContext.User'  is null.");
+                return Problem("Entity set 'UserDBContext.User'  is null.");
             }
 
             bool userExists = _context.User.Any(User => User.Login == user.Login);

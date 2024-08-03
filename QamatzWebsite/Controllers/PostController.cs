@@ -14,9 +14,9 @@ namespace QamatzWebsite.Controllers
     [ApiController]
     public class PostController : ControllerBase
     {
-        private readonly QamatzDBContext _context;
+        private readonly PostDBContext _context;
 
-        public PostController(QamatzDBContext context)
+        public PostController(PostDBContext context)
         {
             _context = context;
         }
@@ -88,7 +88,7 @@ namespace QamatzWebsite.Controllers
         {
             if (_context.Post == null)
             {
-                return Problem("Entity set 'QamatzDBContext.Post'  is null.");
+                return Problem("Entity set 'UserDBContext.Post'  is null.");
             }
             _context.Post.Add(post);
             await _context.SaveChangesAsync();
